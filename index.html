@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Frontend Task №10</title>
     <link rel="stylesheet" href="Styles/index.css">
 </head>
 <body>
 
 <main>
     <pre id="zero">0</pre>
-    <input id="input" type="text" value="0" >
+    <input id="input" type="text" value="0" readonly>
     <div id="wracked">
         <button onclick="add('7')">7</button>
         <button onclick="add('8')">8</button>
@@ -31,61 +31,6 @@
         <button onclick="add('+')">+</button>
     </div>
 </main>
-<script>
-    const input1 = document.getElementById("input");
-    input1.value[input1.value.length - 1].color = 'black';
-    let zero = document.getElementById("zero");
-
-    function add(e) {
-        if (input1.value.length === 1 && input1.value === '0') {
-            input1.value = e;
-            zero.innerText = e;
-        } else if (e.match(/[0-9.]/)) {
-            input1.value += e;
-            if (input1.value[input1.value.length - 2].match(/[0-9.]/)) {
-                zero.innerText += e;
-            } else {
-                zero.innerText = e
-            }
-        } else {
-            input1.value += ' ' + e + ' ';
-            zero.innerText = " " + e + " ";
-        }
-    }
-
-    function cl() {
-        input1.value = "0";
-        zero.innerText = "0";
-    }
-
-    function del() {
-        if (input1.value.length === 1) {
-            input1.value = '0';
-            zero.innerText = "0";
-        } else if (input1.value[input1.value.length - 1].match(/[0-9.]/)) {
-            input1.value = input1.value.substring(0, input1.value.length - 1);
-            let i =1;
-            while(input1.value[input1.value.length - i]!==" " && (i)<=input1.value.length)
-            {
-                i++;
-            }
-            zero.innerText =input1.value.substring(input1.value.length - i+1, input1.value.length);
-        } else {
-            input1.value = input1.value.substring(0, input1.value.length - 3)
-            let i =1;
-            while(input1.value[input1.value.length - i]!==" " && (i)<=input1.value.length)
-            {
-                i++;
-            }
-            zero.innerText =input1.value.substring(input1.value.length - i+1, input1.value.length);
-        }
-    }
-
-    function equal() {
-        input1.value = eval(input1.value);
-        zero.innerText = eval(input1.value);
-    }
-
-</script>
+<script src="script/index.js" ></script>
 </body>
 </html>
