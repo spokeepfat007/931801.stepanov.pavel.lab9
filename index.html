@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="Styles/index.css">
+</head>
+<body>
+
+<main>
+    <pre id="zero">0</pre>
+    <input id="input" type="text" value="0" readonly>
+    <div id="wracked">
+        <button onclick="add('7')">7</button>
+        <button onclick="add('8')">8</button>
+        <button onclick="add('9')">9</button>
+        <button onclick="add('/')">/</button>
+        <button onclick="cl()">C</button>
+        <button onclick="add('4')">4</button>
+        <button onclick="add('5')">5</button>
+        <button onclick="add('6')">6</button>
+        <button onclick="add('*')">*</button>
+        <button onclick="del()"><=</button>
+        <button onclick="add('1')">1</button>
+        <button onclick="add('2')">2</button>
+        <button onclick="add('3')">3</button>
+        <button onclick="add('-')">-</button>
+        <button class="grid-15" onclick="equal()">=</button>
+        <button class="grid-16" onclick="add('0')">0</button>
+        <button onclick="add('.')">.</button>
+        <button onclick="add('+')">+</button>
+    </div>
+</main>
+<script>
+    const input1 = document.getElementById("input");
+    input1.value[input1.value.length - 1].color = 'black';
+    let zero = document.getElementById("zero");
+
+    function add(e) {
+        if (input1.value.length === 1 && input1.value === '0') {
+            input1.value = e;
+            zero.innerText = e;
+        } else if (e.match(/[0-9.]/)) {
+            input1.value += e;
+            if (input1.value[input1.value.length - 2].match(/[0-9.]/)) {
+                zero.innerText += e;
+                console.log(input1.value[input1.value.length - 1]);
+            } else {
+                zero.innerText = e
+            }
+        } else {
+            input1.value += ' ' + e + ' ';
+            zero.innerText = " " + e + " ";
+        }
+    }
+
+    function cl() {
+        input1.value = "0";
+        zero.innerText = "0";
+    }
+
+    function del() {
+        if (input1.value.length === 1) {
+            input1.value = '0';
+            zero.innerText = "0";
+        } else if (input1.value[input1.value.length - 1].match(/[0-9.]/)) {
+            input1.value = input1.value.substring(0, input1.value.length - 1);
+            zero.innerText = zero.textContent.substring(0, zero.textContent - 2);
+
+        } else {
+            input1.value = input1.value.substring(0, input1.value.length - 3)
+            zero.innerText = "";
+            console.log(zero.textContent.length);
+        }
+    }
+
+    function equal() {
+        input1.value = eval(input1.value);
+        zero.innerText = eval(input1.value);
+    }
+
+</script>
+</body>
+</html>
