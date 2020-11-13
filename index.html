@@ -9,7 +9,7 @@
 
 <main>
     <pre id="zero">0</pre>
-    <input id="input" type="text" value="0" readonly>
+    <input id="input" type="text" value="0" >
     <div id="wracked">
         <button onclick="add('7')">7</button>
         <button onclick="add('8')">8</button>
@@ -44,7 +44,6 @@
             input1.value += e;
             if (input1.value[input1.value.length - 2].match(/[0-9.]/)) {
                 zero.innerText += e;
-                console.log(input1.value[input1.value.length - 1]);
             } else {
                 zero.innerText = e
             }
@@ -65,12 +64,20 @@
             zero.innerText = "0";
         } else if (input1.value[input1.value.length - 1].match(/[0-9.]/)) {
             input1.value = input1.value.substring(0, input1.value.length - 1);
-            zero.innerText = zero.textContent.substring(0, zero.textContent - 2);
-
+            let i =1;
+            while(input1.value[input1.value.length - i]!==" " && (i)<=input1.value.length)
+            {
+                i++;
+            }
+            zero.innerText =input1.value.substring(input1.value.length - i+1, input1.value.length);
         } else {
             input1.value = input1.value.substring(0, input1.value.length - 3)
-            zero.innerText = "";
-            console.log(zero.textContent.length);
+            let i =1;
+            while(input1.value[input1.value.length - i]!==" " && (i)<=input1.value.length)
+            {
+                i++;
+            }
+            zero.innerText =input1.value.substring(input1.value.length - i+1, input1.value.length);
         }
     }
 
